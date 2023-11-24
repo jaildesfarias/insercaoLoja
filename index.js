@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize');
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
+const Produto = require('./models/produto'); 
+const db = require('./config/db');
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
