@@ -40,7 +40,10 @@ app.post('/addProduto', (req, res) => {
     });
 });
 
+
 const port = 3000;
-app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+db.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`Servidor rodando em http://localhost:${port}`);
+  });
 });
