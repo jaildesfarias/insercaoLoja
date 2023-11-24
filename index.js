@@ -1,25 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const Produto = require('./models/produto'); 
+const Produto = require('./models/produto');
 const db = require('./config/db');
+
+const app = express();
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
-
-
-const sequelize = new Sequelize('loja', 'aluno', 'ifpe2023', {
-  host: 'localhost',
-  dialect: 'mysql',
-});
-
-const Produto = sequelize.define('Produto', {
-  nome: Sequelize.STRING,
-  email: Sequelize.STRING,
-  endereco: Sequelize.STRING,
-  item: Sequelize.STRING,
-  tamanho: Sequelize.STRING,
-});
-
 
 app.post('/addProduto', (req, res) => {
   const dadosDoFormulario = req.body;
@@ -39,7 +26,6 @@ app.post('/addProduto', (req, res) => {
       res.status(500).send('Erro ao inserir dados no banco de dados.');
     });
 });
-
 
 const port = 3000;
 db.sync().then(() => {
